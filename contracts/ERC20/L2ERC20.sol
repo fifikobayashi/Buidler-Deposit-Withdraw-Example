@@ -1,11 +1,10 @@
 // SPDX-License-Identifier: MIT
-// @supports: ovm
 pragma solidity >0.6.0 <0.8.0;
 
 import { IERC20 } from "./ERC20.interface.sol";
 import { ERC20 } from "./ERC20.sol";
-import { L1ERC20Deposit } from "./L1ERC20Deposit.sol";
-import { iOVM_BaseCrossDomainMessenger } from "@eth-optimism/contracts/build/contracts/iOVM/bridge/iOVM_BaseCrossDomainMessenger.sol";
+import { iOVM_BaseCrossDomainMessenger } from "./iOVM_BaseCrossDomainMessenger.sol";
+//import { iOVM_BaseCrossDomainMessenger } from "@eth-optimism/contracts/build/contracts/iOVM/bridge/iOVM_BaseCrossDomainMessenger.sol";
 
 contract L2ERC20 is ERC20 {
     address l1ERC20DepositAddress;
