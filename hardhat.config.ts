@@ -4,20 +4,13 @@ import '@nomiclabs/hardhat-ethers'
 import '@nomiclabs/hardhat-waffle'
 
 const config: HardhatUserConfig = {
-  mocha: {
-    timeout: 50000,
-  },
   solidity: {
-    version: "0.5.16",
-    settings: {
-      optimizer: { enabled: true, runs: 200 },
-    }
+    version: '0.7.4',
   },
-  networks: {
-    hardhat: {
-      blockGasLimit: 15000000
-    }
-  }
+  paths: {
+    sources: './contracts',
+    tests: './test',
+  },
 }
 
 export default config

@@ -1,4 +1,6 @@
-pragma solidity ^0.5.0;
+// SPDX-License-Identifier: MIT
+// @supports: ovm
+pragma solidity >0.6.0 <0.8.0;
 
 import { IERC20 } from "./ERC20.interface.sol";
 
@@ -24,7 +26,7 @@ contract ERC20 is IERC20 {
         symbol = _tokenSymbol;
     }
 
-    function transfer(address _to, uint256 _value) public returns (bool success) {
+    function transfer(address _to, uint256 _value) override public returns (bool success) {
         require(balances[msg.sender] >= _value);
         balances[msg.sender] -= _value;
         balances[_to] += _value;
@@ -32,7 +34,7 @@ contract ERC20 is IERC20 {
         return true;
     }
 
-    function transferFrom(address _from, address _to, uint256 _value) public returns (bool success) {
+    function transferFrom(address _from, address _to, uint256 _value) override public returns (bool success) {
         uint256 allowance = allowed[_from][msg.sender];
         require(balances[_from] >= _value && allowance >= _value);
         balances[_to] += _value;
@@ -44,17 +46,17 @@ contract ERC20 is IERC20 {
         return true;
     }
 
-    function balanceOf(address _owner) public view returns (uint256 balance) {
+    function balanceOf(address _owner) override public view returns (uint256 balance) {
         return balances[_owner];
     }
 
-    function approve(address _spender, uint256 _value) public returns (bool success) {
+    function approve(address _spender, uint256 _value) override public returns (bool success) {
         allowed[msg.sender][_spender] = _value;
         emit Approval(msg.sender, _spender, _value);
         return true;
     }
 
-    function allowance(address _owner, address _spender) public view returns (uint256 remaining) {
+    function allowance(address _owner, address _spender) override public view returns (uint256 remaining) {
         return allowed[_owner][_spender];
     }
 

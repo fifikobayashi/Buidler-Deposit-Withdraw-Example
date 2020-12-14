@@ -1,4 +1,6 @@
-pragma solidity ^0.5.0;
+// SPDX-License-Identifier: MIT
+// @supports: ovm
+pragma solidity >0.6.0 <0.8.0;
 
 import { IERC20 } from "./ERC20.interface.sol";
 import { ERC20 } from "./ERC20.sol";

@@ -4,12 +4,14 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "build": "yarn run build:contracts",
-    "build:contracts": "hardhat compile",
-    "test": "yarn run test:contracts",
-    "test:contracts": "hardhat test"
+    "test": "hardhat test --show-stack-traces",
+    "lint": "yarn run lint:typescript",
+    "lint:typescript": "tslint --format stylish --project .",
+    "lint:fix": "yarn run lint:fix:typescript",
+    "lint:fix:typescript": "prettier --config prettier-config.json --write \"hardhat.config.ts\" \"{src,test}/**/*.ts\""
   },
   "dependencies": {
+    "@eth-optimism/plugins": "^0.0.1",
     "@eth-optimism/contracts": "0.0.2-alpha.7",
     "@eth-optimism/ovm-toolchain": "0.0.1-alpha.12",
     "@nomiclabs/hardhat-ethers": "^2.0.0",
