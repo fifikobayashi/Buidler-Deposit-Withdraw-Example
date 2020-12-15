@@ -1,4 +1,4 @@
-import { expect } from '../setup'
+import { expect } from './setup'
 
 /* External Imports */
 import { ethers } from 'hardhat'

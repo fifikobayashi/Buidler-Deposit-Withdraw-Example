@@ -27,7 +27,10 @@ contract ERC20 is IERC20 {
     }
 
     function transfer(address _to, uint256 _value) override public returns (bool success) {
-        require(balances[msg.sender] >= _value);
+        require(
+            balances[msg.sender] >= _value,
+            "Sender does not have enough balance to make this transfer."
+        );
         balances[msg.sender] -= _value;
         balances[_to] += _value;
         emit Transfer(msg.sender, _to, _value);
@@ -35,11 +38,18 @@ contract ERC20 is IERC20 {
     }
 
     function transferFrom(address _from, address _to, uint256 _value) override public returns (bool success) {
-        uint256 allowance = allowed[_from][msg.sender];
-        require(balances[_from] >= _value && allowance >= _value);
+        uint256 allowanceAmount = allowed[_from][msg.sender];
+        require(
+            balances[_from] >= _value,
+            "Can't transfer from the desired account because it doesn't have enough balance."
+        );
+        require(
+            allowanceAmount >= _value,
+            "Can't transfer from the desired account because there isn't enough of an allowance."
+        );
         balances[_to] += _value;
         balances[_from] -= _value;
-        if (allowance < MAX_UINT256) {
+        if (allowanceAmount < MAX_UINT256) {
             allowed[_from][msg.sender] -= _value;
         }
         emit Transfer(_from, _to, _value);
